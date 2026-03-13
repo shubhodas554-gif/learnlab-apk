@@ -8,10 +8,11 @@ import "core/notifications.dart";
 import "router.dart";
 import "theme.dart";
 
-final _notifications = FlutterLocalNotificationsPlugin();
+late final FlutterLocalNotificationsPlugin _notifications;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  _notifications = FlutterLocalNotificationsPlugin();
   await Firebase.initializeApp();
   await Hive.initFlutter();
   await initNotifications(_notifications);
