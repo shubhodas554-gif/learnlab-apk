@@ -27,7 +27,7 @@ Future<void> scheduleDailyReminder(
 
   await plugin.zonedSchedule(
     1,
-    'Time to learn! ??',
+    'Time to learn!',
     'Keep your streak alive.',
     _nextInstance(hour, minute),
     details,
