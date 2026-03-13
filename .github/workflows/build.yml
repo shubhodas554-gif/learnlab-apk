@@ -8,26 +8,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    defaults:
+      run:
+        working-directory: LearnLab
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
         with:
           channel: stable
 
-      - name: Install dependencies
-        run: flutter pub get
+      - run: flutter doctor
 
-      - name: Recreate android folder
-        run: flutter create .
+      - run: flutter create .
 
-      - name: Build APK
-        run: flutter build apk --release
+      - run: flutter pub get
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - run: flutter build apk --release
+
+      - uses: actions/upload-artifact@v4
         with:
-          name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: apk
+          path: LearnLab/build/app/outputs/flutter-apk/app-release.apk
